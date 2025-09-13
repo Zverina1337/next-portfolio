@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # next-portfolio-anim-starter
 
 
@@ -32,3 +33,6 @@ Put GLB into public/models and import via drei/useGLTF.
 
 ## Production
 pnpm build && pnpm start
+=======
+
+>>>>>>> ee3bf591c00c5ec7b6703f5cc27ec15160b1f649
