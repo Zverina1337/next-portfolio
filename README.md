@@ -1,10 +1,6 @@
 # 🚀 Быстрый старт
 
 ```bash
-# клон
-git clone https://github.com/<OWNER>/<REPO>.git
-cd <REPO>
-
 # зависимости
 pnpm i
 
