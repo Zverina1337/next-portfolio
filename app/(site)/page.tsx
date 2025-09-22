@@ -34,15 +34,6 @@ export default function Hero() {
         )
         .fromTo('.reveal-line', { yPercent: 120 }, { yPercent: 0, duration: 0.7, stagger: 0.08 }, 0.12)
 
-      // 2) блик по буквам — только если не reduced
-      if (!prefersReduced) {
-        intro
-          .set('.shine-wrap', { '--shine-x': '-150%', '--shine-o': 0 } as any, 0.2)
-          .to('.shine-wrap', { '--shine-o': 0.45, duration: 0.1 } as any, '>-0.45')
-          .to('.shine-wrap', { '--shine-x': '150%', duration: 1.1, ease: 'power2.out' } as any, '<')
-          .to('.shine-wrap', { '--shine-o': 0, duration: 0.25 } as any, '>-0.2')
-      }
-
       if (hasLabel(tl, 'hero')) tl!.add(intro, 'hero')
       else intro.play(0)
     }, root)
@@ -84,42 +75,6 @@ export default function Hero() {
       </div>
 
       <div aria-hidden className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/40 to-transparent" />
-
-      {/* локальные стили для shine-эффекта */}
-      <style jsx>{`
-        .shine-wrap {
-          position: relative;
-          display: inline-block;
-          /* базовый цвет текста — ваш цвет темы */
-          color: currentColor;
-          /* переменные для анимации GSAP */
-          --shine-x: -150%;
-          --shine-o: 0;
-        }
-        .shine-wrap::after {
-          content: attr(data-text);
-          position: absolute;
-          inset: 0;
-          /* сам «блик»: узкая светлая полоса на прозрачном */
-          background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0) 45%,
-            rgba(255, 255, 255, 0.95) 50%,
-            rgba(255, 255, 255, 0) 55%,
-            rgba(255, 255, 255, 0) 100%
-          );
-          background-size: 220% 100%;
-          background-position: var(--shine-x) 0%;
-          opacity: var(--shine-o);
-          /* магия клипа по глифам */
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          pointer-events: none;
-          will-change: background-position, opacity;
-        }
-      `}</style>
     </section>
   )
 }

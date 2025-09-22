@@ -1,9 +1,17 @@
 import { gsap } from 'gsap'
-export default function getMasterTl() {
-  if (typeof window === 'undefined') return null
-  const w = window as any
-  if (!w.__MASTER_TL) {
-    w.__MASTER_TL = gsap.timeline({ paused: true })
+
+// Расширяем тип Window, чтобы хранить мастер-таймлайн
+declare global {
+  interface Window {
+    __MASTER_TL?: gsap.core.Timeline
   }
-  return w.__MASTER_TL as gsap.core.Timeline
+}
+
+/** Возвращает единственный master timeline (или null на сервере) */
+export default function getMasterTl(): gsap.core.Timeline | null {
+  if (typeof window === 'undefined') return null
+  if (!window.__MASTER_TL) {
+    window.__MASTER_TL = gsap.timeline({ paused: true })
+  }
+  return window.__MASTER_TL
 }
