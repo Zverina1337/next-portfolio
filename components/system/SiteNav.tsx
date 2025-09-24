@@ -24,7 +24,6 @@ export default function SiteNav() {
   const marqueeTween = useRef<gsap.core.Tween | null>(null)
   const [open, setOpen] = useState(false)
 
-  // ===== Intro: регистрируем header в master TL @ 'hero' (или локально) =====
   useLayoutEffect(() => {
     if (!root.current) return
     const tl = getMasterTl()
@@ -47,7 +46,6 @@ export default function SiteNav() {
     return () => ctx.revert()
   }, [])
 
-  // ===== Overlay menu timeline — создать ОДИН РАЗ =====
   useLayoutEffect(() => {
     if (!overlayRef.current) return
     const ctx = gsap.context(() => {
@@ -62,7 +60,6 @@ export default function SiteNav() {
     return () => { ctx.revert(); overlayTl.current = null }
   }, [])
 
-  // ===== Открыть/закрыть overlay без лагов =====
   useEffect(() => {
     const tl = overlayTl.current
     const node = overlayRef.current
@@ -75,7 +72,6 @@ export default function SiteNav() {
     }
   }, [open])
 
-  // ===== auto-hide header + scroll-spy =====
   useEffect(() => {
     let lastY = 0
     const onScroll = () => {
@@ -108,7 +104,6 @@ export default function SiteNav() {
     return () => { window.removeEventListener('scroll', onScroll); ob.disconnect() }
   }, [open])
 
-  // ===== hover underline for topbar links =====
   useEffect(() => {
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a.nav-link'))
     links.forEach(a => {
@@ -123,7 +118,6 @@ export default function SiteNav() {
     return () => { links.forEach(a => a.replaceWith(a.cloneNode(true))) }
   }, [])
 
-  // ===== «Магнит» на кнопке =====
   useEffect(() => {
     const btn = document.getElementById('menuBtn')
     const magnet = document.getElementById('menuBtnMagnet')
@@ -143,14 +137,12 @@ export default function SiteNav() {
     }
   }, [])
 
-  // ===== Бесконечный тикер «AVAILABLE — MAY 2025» в header =====
   useLayoutEffect(() => {
     if (!headerRef.current) return
     const ctx = gsap.context(() => {
       const track = headerRef.current!.querySelector('#availabilityTrack') as HTMLElement | null
       if (!track) return
 
-      // дублируем контент один раз для бесшовной прокрутки
       if (!track.dataset.duped) {
         track.innerHTML = track.innerHTML + track.innerHTML
         track.dataset.duped = '1'
@@ -161,7 +153,6 @@ export default function SiteNav() {
         const w = track.scrollWidth / 2 // ширина оригинального набора
         marqueeTween.current?.kill()
         gsap.set(track, { x: 0 })
-        // скорость ~40px/с, но не меньше 10с на цикл
         const duration = Math.max(10, w / 40)
         marqueeTween.current = gsap.to(track, {
           x: -w,
@@ -172,7 +163,6 @@ export default function SiteNav() {
         })
       }
 
-      // пересчитываем на ресайз контейнера/окна
       const ro = new ResizeObserver(() => setupMarquee())
       ro.observe(container)
       window.addEventListener('resize', setupMarquee)
