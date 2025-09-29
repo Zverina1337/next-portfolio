@@ -24,6 +24,7 @@ export default function SiteNav() {
   const marqueeTween = useRef<gsap.core.Tween | null>(null)
   const [open, setOpen] = useState(false)
 
+  // ========== Intro c master TL ==========
   useLayoutEffect(() => {
     if (!root.current) return
     const tl = getMasterTl()
@@ -36,16 +37,14 @@ export default function SiteNav() {
           { yPercent: 0, opacity: 1, duration: 0.6 }
         )
 
-      if (hasLabel(tl, 'hero')) {
-        tl!.add(navIntro, 'hero') // синхронно с героем
-      } else {
-        navIntro.play(0) // фолбэк без задержки
-      }
+      if (hasLabel(tl, 'hero')) tl!.add(navIntro, 'hero')
+      else navIntro.play(0)
     }, root)
 
     return () => ctx.revert()
   }, [])
 
+  // ========== Overlay ==========
   useLayoutEffect(() => {
     if (!overlayRef.current) return
     const ctx = gsap.context(() => {
@@ -72,6 +71,7 @@ export default function SiteNav() {
     }
   }, [open])
 
+  // ========== Auto-hide header + scroll-spy ==========
   useEffect(() => {
     let lastY = 0
     const onScroll = () => {
@@ -104,6 +104,7 @@ export default function SiteNav() {
     return () => { window.removeEventListener('scroll', onScroll); ob.disconnect() }
   }, [open])
 
+  // ========== Hover underline ==========
   useEffect(() => {
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a.nav-link'))
     links.forEach(a => {
@@ -118,6 +119,7 @@ export default function SiteNav() {
     return () => { links.forEach(a => a.replaceWith(a.cloneNode(true))) }
   }, [])
 
+  // ========== Магнит для кнопки ==========
   useEffect(() => {
     const btn = document.getElementById('menuBtn')
     const magnet = document.getElementById('menuBtnMagnet')
@@ -137,6 +139,7 @@ export default function SiteNav() {
     }
   }, [])
 
+  // ========== Бегущая строка (если есть) ==========
   useLayoutEffect(() => {
     if (!headerRef.current) return
     const ctx = gsap.context(() => {
@@ -150,7 +153,7 @@ export default function SiteNav() {
 
       const container = track.parentElement as HTMLElement
       const setupMarquee = () => {
-        const w = track.scrollWidth / 2 // ширина оригинального набора
+        const w = track.scrollWidth / 2
         marqueeTween.current?.kill()
         gsap.set(track, { x: 0 })
         const duration = Math.max(10, w / 40)
@@ -166,7 +169,6 @@ export default function SiteNav() {
       const ro = new ResizeObserver(() => setupMarquee())
       ro.observe(container)
       window.addEventListener('resize', setupMarquee)
-
       setupMarquee()
 
       return () => {
@@ -179,6 +181,43 @@ export default function SiteNav() {
     return () => ctx.revert()
   }, [])
 
+  // ========== Плавный скролл по якорям (с учётом высоты хедера) ==========
+  useEffect(() => {
+    const anchors = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('header a[href^="#"], #overlayMenu a[href^="#"]')
+    )
+
+    const forceHeaderVisible = () => {
+      if (!headerRef.current) return
+      gsap.to(headerRef.current, { yPercent: 0, duration: 0.2, overwrite: 'auto' })
+    }
+
+    const onClick = (e: MouseEvent) => {
+      const a = e.currentTarget as HTMLAnchorElement
+      const href = a.getAttribute('href') || ''
+      if (!href.startsWith('#')) return
+      const target = document.querySelector(href) as HTMLElement | null
+      if (!target) return
+
+      e.preventDefault()
+
+      // закрыть оверлей и показать хедер
+      if (open) setOpen(false)
+      forceHeaderVisible()
+
+      // динамический отступ под высоту хедера (+8px)
+      const headerH = headerRef.current?.offsetHeight ?? 56
+      target.style.scrollMarginTop = `${headerH + 8}px`
+
+      // нативный smooth с учётом scroll-margin-top
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
+    anchors.forEach(a => a.addEventListener('click', onClick))
+    return () => anchors.forEach(a => a.removeEventListener('click', onClick))
+  }, [open])
+
+
   return (
     <div ref={root} className="relative">
       <header
@@ -187,6 +226,7 @@ export default function SiteNav() {
       >
         <div className="container mx-auto flex h-14 items-center justify-between px-4">
           <div className="flex items-center sm:gap-6 gap-0">
+            {/* ссылка домой ведёт к CinematicIntro (id="home") */}
             <Link href="#home" className="font-medium">Zverinacode</Link>
 
             <div id="availability" className="sm:inline-flex hidden items-center gap-3 rounded-full border border-foreground/15 px-4 py-1">
@@ -220,6 +260,7 @@ export default function SiteNav() {
         </div>
       </header>
 
+      {/* Overlay */}
       <div
         ref={overlayRef}
         id="overlayMenu"
