@@ -5,6 +5,29 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import getMasterTl from '@/components/lib/useMasterTl'
 
+type CTASpotStyle = React.CSSProperties & {
+  '--mx'?: string | number
+  '--my'?: string | number
+}
+
+const ctaSpotStyle: CTASpotStyle = {
+  '--mx': '24px',
+  '--my': '12px',
+  background:
+    'radial-gradient(120px 80px at var(--mx) var(--my), rgba(34,211,238,0.27), rgba(34,211,238,0) 60%)',
+  backgroundRepeat: 'no-repeat',
+  filter: 'blur(6px)',
+}
+
+const hoverSpotStyle: CTASpotStyle = {
+  '--mx': '50px',
+  '--my': '50px',
+  background:
+    'radial-gradient(140px 140px at var(--mx) var(--my), rgba(34,211,238,0.22), rgba(34,211,238,0) 60%)',
+  backgroundRepeat: 'no-repeat',
+  zIndex: 0,
+}
+
 gsap.registerPlugin(ScrollTrigger)
 
 type CleanupFn = (() => void) | null
@@ -345,14 +368,7 @@ export default function AboutScrollPhases() {
               >
                 <span
                   className="cta-spot pointer-events-none absolute inset-0 opacity-0 rounded-full"
-                  style={{
-                    ['--mx' as any]: '24px',
-                    ['--my' as any]: '12px',
-                    background:
-                      'radial-gradient(120px 80px at var(--mx) var(--my), rgba(34,211,238,0.27), rgba(34,211,238,0) 60%)',
-                    backgroundRepeat: 'no-repeat',
-                    filter: 'blur(6px)',
-                  }}
+                  style={ctaSpotStyle}
                 />
                 Смотреть проекты →
               </a>
@@ -399,14 +415,7 @@ export default function AboutScrollPhases() {
                 />
                 <div
                   className="hover-spot pointer-events-none absolute inset-0 opacity-0"
-                  style={{
-                    ['--mx' as any]: '50px',
-                    ['--my' as any]: '50px',
-                    background:
-                      'radial-gradient(140px 140px at var(--mx) var(--my), rgba(34,211,238,0.22), rgba(34,211,238,0) 60%)',
-                    backgroundRepeat: 'no-repeat',
-                    zIndex: 0,
-                  }}
+                  style={hoverSpotStyle}
                   aria-hidden
                 />
                 <div className="relative z-10">
