@@ -5,8 +5,6 @@ import { useRef } from 'react'
 import SiteNav from '@/components/system/SiteNav'
 import CinematicIntro from '@/components/sections/CinematicIntro'
 import AboutOrbit from '@/components/sections/AboutOrbit'
-import ProjectBlock from '@/components/sections/ProjectsBlock'
-
 
 export default function HeroPage() {
   const wrapperRef = useRef<HTMLDivElement>(null)

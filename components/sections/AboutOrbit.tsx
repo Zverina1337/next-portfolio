@@ -3,20 +3,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
-type CTASpotStyle = React.CSSProperties & {
-  '--mx'?: string | number
-  '--my'?: string | number
-}
-
-const ctaSpotStyle: CTASpotStyle = {
-  '--mx': '24px',
-  '--my': '12px',
-  background:
-    'radial-gradient(120px 80px at var(--mx) var(--my), rgba(34,211,238,0.27), rgba(34,211,238,0) 60%)',
-  backgroundRepeat: 'no-repeat',
-  filter: 'blur(6px)',
-}
-
 export default function AboutScrollPhases() {
   const root = useRef<HTMLElement>(null)
   const ribbonRef = useRef<HTMLDivElement>(null)

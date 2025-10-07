@@ -1,7 +1,7 @@
 'use client'
 
 import * as THREE from 'three'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 export default function NetworkSphere3D() {
   const containerRef = useRef<HTMLDivElement>(null)

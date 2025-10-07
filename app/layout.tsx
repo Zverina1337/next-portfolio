@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" suppressHydrationWarning className='dark'>
-      <head>
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.16.0/dist/ScrollSmoother.min.js"></script>
-      </head>
       <body className="min-h-dvh bg-background text-foreground antialiased">
         <BootPreloader durationMs={1500}/>
         {children}
