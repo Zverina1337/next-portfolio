@@ -78,7 +78,7 @@ export default function AboutScrollPhases() {
     <section
       ref={root}
       id="about"
-      className="relative min-h-screen overflow-hidden bg-black text-white opacity-0"
+      className="relative min-h-[85vh] overflow-hidden bg-black text-white opacity-0"
       aria-label="About — phased reveal"
     >
       {/* ambient sweep */}
