@@ -128,8 +128,13 @@ function EmailDrop({ email, intervalMs = 2200, className = '' }: { email: string
       }
     }
 
-    ensureMeasured()
-    ;(document as any)?.fonts?.ready?.then(() => { if (!destroyed) ensureMeasured() })
+    ensureMeasured();
+    const fontsReady: Promise<FontFaceSet> | undefined =
+      (document as Document & { fonts?: FontFaceSet }).fonts?.ready;
+
+    fontsReady?.then(() => {
+      if (!destroyed) ensureMeasured();
+    });
     window.addEventListener('load', ensureMeasured)
 
     // pause on hover/focus so mailto is easy to click
@@ -260,7 +265,7 @@ export default function ContactBlock({
     }
   }, [prefersReduced])
 
-  const style = { ['--accent' as any]: accent } as React.CSSProperties
+  const style = { ['--accent' as string]: accent } as React.CSSProperties
 
   return (
     <section
@@ -384,7 +389,7 @@ export default function ContactBlock({
 
       <div data-info className="mb-2 grid grid-cols-1 md:grid-cols-2 border-y border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10">
         <div className="p-5 sm:p-6 text-slate-300/90">
-          <p className="max-w-xl text-sm sm:text-base">GOT SOME EXISTING IDEAS? LET'S CONNECT AND CREATE SOMETHING EXTRAORDINARY TOGETHER!</p>
+          <p className="max-w-xl text-sm sm:text-base">ЕСТЬ КАКАЯ-НИБУДЬ ИДЕЯ? ДАВАЙ ОБСУДИМ И СДЕЛАЕМ ЧТО-НИБУДЬ КРУТОЕ ВМЕСТЕ!</p>
         </div>
         <div className="p-5 sm:p-6 flex items-center">
           <EmailDrop email={email} intervalMs={intervalMs} />
