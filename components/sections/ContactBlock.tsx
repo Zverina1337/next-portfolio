@@ -169,10 +169,10 @@ function EmailDrop({ email, intervalMs = 2200, className = '' }: { email: string
         <span className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight pb-[0.03em]">gjpqy {email}</span>
       </span>
       <a ref={aRef} href={`mailto:${email}`} className="absolute inset-0 block will-change-transform">
-        <span className="whitespace-nowrap leading-[1.2] text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white pb-[0.03em]">{email}</span>
+        <span className="whitespace-nowrap leading-[0.8] text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white pb-[0.03em]">{email}</span>
       </a>
       <a ref={bRef} href={`mailto:${email}`} className="absolute inset-0 block will-change-transform">
-        <span className="whitespace-nowrap leading-[1.2] text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white pb-[0.03em]">{email}</span>
+        <span className="whitespace-nowrap leading-[0.8] text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white pb-[0.03em]">{email}</span>
       </a>
     </div>
   )
