@@ -2,9 +2,9 @@
 
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import RulerTop from '@/components/animation/RulerTop'
-import NetworkSphere3D from '@/components/animation/NetworkSphere3D'
-import getMasterTl from '@/components/lib/useMasterTl'
+import RulerTop from '@/components/ui/custom/RulerTop'
+import Sphere from '@/components/ui/custom/3D/Sphere'
+import getMasterTl from '@/components/hooks/useMasterTl'
 
 export default function CinematicIntroOptimized() {
   const root = useRef<HTMLDivElement>(null)
@@ -140,7 +140,7 @@ export default function CinematicIntroOptimized() {
               className="relative mt-8 grid place-items-center cursor-grab"
             >
               <div className="w-full max-w-full sm:max-w-[720px]">
-                <NetworkSphere3D />
+                <Sphere />
               </div>
             </div>
           </div>

@@ -2,11 +2,10 @@
 
 import { useRef } from 'react'
 
-import SiteNav from '@/components/system/SiteNav'
-import CinematicIntro from '@/components/sections/CinematicIntro'
-import AboutOrbit from '@/components/sections/AboutOrbit'
-import ProjectsBlock from '@/components/sections/ProjectsBlock'
-import ContactBlock from '@/components/sections/ContactBlock'
+import CinematicIntro from '@/app/(home)/components/CinematicIntro'
+import AboutOrbit from '@/app/(home)/components/AboutOrbit'
+import ProjectsBlock from '@/app/(home)/components/ProjectsBlock'
+import ContactBlock from '@/app/(home)/components/ContactBlock'
 
 export default function HeroPage() {
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -15,7 +14,6 @@ export default function HeroPage() {
   return (
     <div ref={wrapperRef} id="smooth-wrapper" className="overflow-hidden w-full">
       <div ref={contentRef} id="smooth-content">
-        <SiteNav />
         <CinematicIntro />
         <AboutOrbit />
         <ProjectsBlock />

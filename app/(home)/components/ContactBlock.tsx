@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PT_Sans_Narrow } from 'next/font/google'
-
+import MagneticButton from '@/components/ui/custom/MagneticButton'
 // Fonts (with Cyrillic)
 const ptSansNarrow = PT_Sans_Narrow({ subsets: ['latin', 'cyrillic'], weight: ['400', '700'], display: 'swap' })
 
@@ -223,48 +223,6 @@ export default function ContactBlock({
     return () => ctx.revert()
   }, [prefersReduced])
 
-  // Magnetic button (smooth to cursor)
-  useIsoLayout(() => {
-    const zone = zoneRef.current
-    const btn = buttonRef.current
-    if (!zone || !btn) return
-    if (prefersReduced || isTouchDevice()) return
-
-    const qx = gsap.quickTo(btn, 'x', { duration: 0.65, ease: 'expo.out' })
-    const qy = gsap.quickTo(btn, 'y', { duration: 0.65, ease: 'expo.out' })
-    const qrot = gsap.quickTo(btn, 'rotate', { duration: 0.65, ease: 'expo.out' })
-    const qsc = gsap.quickTo(btn, 'scale', { duration: 0.65, ease: 'expo.out' })
-
-    const MAX_SHIFT = 220 // px
-
-    const onMove = (e: MouseEvent) => {
-      const r = zone.getBoundingClientRect()
-      const cx = r.left + r.width / 2
-      const cy = r.top + r.height / 2
-      const R = Math.max(1, Math.min(r.width, r.height) * 0.5)
-      let nx = (e.clientX - cx) / R
-      let ny = (e.clientY - cy) / R
-      nx = Math.max(-1, Math.min(1, nx))
-      ny = Math.max(-1, Math.min(1, ny))
-      const mag = Math.hypot(nx, ny)
-      const eased = Math.pow(Math.min(1, mag), 0.6)
-      const dirx = mag ? nx / mag : 0
-      const diry = mag ? ny / mag : 0
-      const dx = dirx * MAX_SHIFT * eased
-      const dy = diry * MAX_SHIFT * eased
-      qx(dx); qy(dy); qrot(dx * 0.06); qsc(1 + 0.04 * eased)
-    }
-
-    const onLeave = () => { qx(0); qy(0); qrot(0); qsc(1) }
-
-    zone.addEventListener('mousemove', onMove)
-    zone.addEventListener('mouseleave', onLeave)
-    return () => {
-      zone.removeEventListener('mousemove', onMove)
-      zone.removeEventListener('mouseleave', onLeave)
-    }
-  }, [prefersReduced])
-
   const style = { ['--accent' as string]: accent } as React.CSSProperties
 
   return (
@@ -350,20 +308,7 @@ export default function ContactBlock({
           CONTACT ME
         </h1>
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
-          <button
-            ref={buttonRef}
-            onClick={() => { window.location.href = 'mailto:' + (email || '') }}
-            className={clsx(
-              'pointer-events-auto group inline-flex items-center gap-4 rounded-full border-2 px-8 sm:px-10 py-3 sm:py-4',
-              'bg-black border-white/10 backdrop-blur-md',
-              'transition-transform duration-300 will-change-transform',
-            )}
-          >
-            <span className="text-xl sm:text-2xl font-semibold tracking-wide text-white">CONTACT</span>
-            <span className="grid place-items-center rounded-full border-2 w-10 h-10 sm:w-12 sm:h-12 border-white/20 bg-white/[0.03] ring-1 ring-inset ring-[color:var(--accent)]/30">
-              <IconArrow className="w-5 h-5 text-[color:var(--accent)]" />
-            </span>
-          </button>
+          <MagneticButton/>
         </div>
       </div>
 

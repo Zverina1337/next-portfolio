@@ -1,8 +1,8 @@
 'use client'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import Eye from '../animation/Eye'
-import getMasterTl from '../lib/useMasterTl'
+import Eye from './Eye'
+import getMasterTl from '../../../hooks/useMasterTl'
 
 type Props = { durationMs?: number; fadeMs?: number }
 
