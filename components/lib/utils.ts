@@ -9,3 +9,7 @@ export const hasLabel = (tl: GSAPTimeline | null, name: string): boolean =>
   !!tl && !!tl.labels && Object.prototype.hasOwnProperty.call(tl.labels, name);
 
 
+export async function getGsap() {
+  const mod = await import('gsap')
+  return mod.gsap
+}

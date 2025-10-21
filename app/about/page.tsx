@@ -3,8 +3,8 @@
 import { useRef } from 'react'
 
 import SiteNav from '@/components/navigation/Navigation.client'
-import CinematicIntro from '@/app/(home)/components/CinematicIntro'
-import AboutOrbit from '@/app/(home)/components/AboutOrbit'
+import CinematicIntro from '@/app/(home)/components/BlockIntro'
+import AboutOrbit from '@/app/(home)/components/about/AboutOrbit'
 import ProjectsBlock from '@/app/(home)/components/ProjectsBlock'
 import ContactBlock from '@/app/(home)/components/ContactBlock'
 

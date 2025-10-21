@@ -4,7 +4,7 @@ import { forwardRef, useRef } from 'react'
 import RunningLine from '@/components/ui/custom/RunningLine'
 import { Button } from '@/components/ui/button'
 import useMagnet from '@/components/hooks/useMagnet'
-import AnimatedSlogan from '@/components/ui/custom/AnimatedSlogan'
+import AnimatedSlogan from '@/components/ui/custom/animated/AnimatedSlogan'
 
 type Props = {
   phrases: string[]
