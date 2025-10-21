@@ -9,7 +9,6 @@ type AnimatedBGProps = {
   variant?: Variant;
   tint?: string;          // цвет обводок, например 'rgba(255,255,255,0.10)'
   accent?: string;        // для подсветок
-  noise?: boolean;        // включить displacement шумом
   particles?: boolean;    // включить светлячков
   className?: string;     // для позиционирования
 };
@@ -18,7 +17,6 @@ const AnimatedBG = memo(function AnimatedBG({
   variant = 'rings',
   tint = 'rgba(255,255,255,0.10)',
   accent = 'rgba(34,211,238,0.35)', // cyan-400
-  noise = false,
   particles = true,
   className = 'pointer-events-none absolute inset-0 z-0',
 }: AnimatedBGProps) {
@@ -82,26 +80,10 @@ const AnimatedBG = memo(function AnimatedBG({
         });
       }
 
-      // Лёгкий «плывун» шумом (аккуратно!)
-      if (noise) {
-        const turb = svg.querySelector('#bgfx-turb') as SVGFETurbulenceElement | null;
-        if (turb) {
-          gsap.to({ f: 0.006 }, {
-            f: 0.011,
-            duration: 18,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            onUpdate(self) {
-              turb.setAttribute('baseFrequency', String((self.targets()[0] as any).f));
-            },
-          });
-        }
-      }
     }, rootRef);
 
     return () => ctx.revert();
-  }, [variant, noise]);
+  }, [variant]);
 
   // SVG разметка под разные варианты
   return (
@@ -115,12 +97,6 @@ const AnimatedBG = memo(function AnimatedBG({
     >
       {/* Фильтры */}
       <defs>
-        {noise && (
-          <filter id="bgfx-displace" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence id="bgfx-turb" type="fractalNoise" baseFrequency="0.008" numOctaves="2" seed="8" />
-            <feDisplacementMap in="SourceGraphic" scale="6" />
-          </filter>
-        )}
         {/* Gooey для варианта gooey */}
         <filter id="bgfx-gooey">
           <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
@@ -152,7 +128,7 @@ const AnimatedBG = memo(function AnimatedBG({
 
       {/* Вариант: RINGS — круговые штрих-кольца */}
       {variant === 'rings' && (
-        <g style={{ filter: noise ? 'url(#bgfx-displace)' : undefined }} fill="none" strokeLinecap="round">
+        <g fill="none" strokeLinecap="round">
           {[140, 250, 360, 470].map((r, i) => (
             <circle
               key={r}
@@ -185,7 +161,7 @@ const AnimatedBG = memo(function AnimatedBG({
 
       {/* Вариант: GRID — тонкая сетка + концентрические окружности */}
       {variant === 'grid' && (
-        <g style={{ filter: noise ? 'url(#bgfx-displace)' : undefined }}>
+        <g >
           {/* сетка */}
           <g stroke={tint} strokeOpacity="0.07" strokeWidth="1">
             {Array.from({ length: 20 }).map((_, i) => (
@@ -204,7 +180,7 @@ const AnimatedBG = memo(function AnimatedBG({
 
       {/* Вариант: ORBITS — эллипсы + узлы на орбитах */}
       {variant === 'orbits' && (
-        <g style={{ filter: noise ? 'url(#bgfx-displace)' : undefined }}>
+        <g>
           {[180, 260, 340, 420].map((r, i) => (
             <ellipse
               key={r}
