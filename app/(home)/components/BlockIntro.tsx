@@ -61,7 +61,6 @@ export default function CinematicIntroOptimized() {
             variant="rings"
             tint="rgba(255,255,255,0.10)"
             accent="rgba(34,211,238,0.35)"
-            noise={false}
             particles={true}
             className="pointer-events-none absolute inset-0 z-0 w-full h-full -top-1/6"
           />
