@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import RulerTop from '@/components/ui/custom/RulerTop'
 import Sphere from '@/components/ui/custom/3D/Sphere'
@@ -16,7 +16,7 @@ export default function CinematicIntroOptimized() {
   // триггерим анимацию, когда секция видна хотя бы на 20%
   const isVisible = useIntersectionObserver(root, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const prefersReduced =
       typeof window !== 'undefined' &&
       window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches

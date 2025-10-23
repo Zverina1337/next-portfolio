@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, memo } from 'react';
+import { useRef, memo, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 type Variant = 'rings' | 'grid' | 'orbits' | 'aurora' | 'gooey';
@@ -22,7 +22,7 @@ const AnimatedBG = memo(function AnimatedBG({
 }: AnimatedBGProps) {
   const rootRef = useRef<SVGSVGElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const reduce =
       typeof window !== 'undefined' &&
       window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;

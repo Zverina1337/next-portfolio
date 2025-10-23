@@ -3,8 +3,8 @@
 import { useRef } from 'react'
 
 import CinematicIntro from '@/app/(home)/components/BlockIntro'
-import ProjectsBlock from '@/app/(home)/components/ProjectsBlock'
-import ContactBlock from '@/app/(home)/components/ContactBlock'
+import ProjectsBlock from '@/app/(home)/components/projects/ProjectsBlock'
+import ContactBlock from '@/app/(home)/components/contact/ContactBlock'
 import AboutSection from './components/about/AboutSection'
 
 export default function HeroPage() {
@@ -16,7 +16,7 @@ export default function HeroPage() {
       <div ref={contentRef} id="smooth-content">
         <CinematicIntro />
         <AboutSection />
-        {/* <ProjectsBlock /> */}
+        <ProjectsBlock />
         {/* <ContactBlock email='danii.zvorugin@gmail.com' /> */}
       </div>
     </div>

@@ -1,6 +1,6 @@
 // RadialAccent.tsx
 'use client';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 type RadialAccentProps = {
@@ -29,7 +29,7 @@ export default function AnimatedRadialAccent({
   const wrapRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const reduce =
       typeof window !== 'undefined' &&
       window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;

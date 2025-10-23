@@ -1,5 +1,5 @@
 'use client'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import Eye from './Eye'
 import getMasterTl from '../../../hooks/useMasterTl'
@@ -13,7 +13,7 @@ export default function BootPreloader({
   const [visible, setVisible] = useState(true)
   const overlayRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const tl = getMasterTl()
     if (!overlayRef.current || !tl) return
 

@@ -1,5 +1,5 @@
 'use client';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 export default function useOverlayMenu(
@@ -7,7 +7,7 @@ export default function useOverlayMenu(
 ): GSAPTimeline | null {
   const tlRef = useRef<GSAPTimeline | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const node = ref.current;
     if (!node) return;
     const ctx = gsap.context(() => {

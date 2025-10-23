@@ -1,5 +1,5 @@
 'use client';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import getMasterTl from '@/components/hooks/useMasterTl';
 import { hasLabel } from '@/components/lib/utils';
@@ -8,7 +8,7 @@ export default function useNavIntro(
   rootRef: React.RefObject<HTMLElement|null>,
   headerRef: React.RefObject<HTMLElement|null>
 ): void {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!rootRef.current || !headerRef.current) return;
     const tl = getMasterTl(); // типизируй его как GSAPTimeline в его файле
     const ctx = gsap.context(() => {

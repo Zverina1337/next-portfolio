@@ -1,10 +1,10 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 export default function RulerTop() {
   const ref = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(0)
   const [labels, setLabels] = useState<number[]>([])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!ref.current) return
     const el = ref.current
 

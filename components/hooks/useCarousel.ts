@@ -1,5 +1,5 @@
 'use client';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import GSAPTween from 'gsap';
 
@@ -9,7 +9,7 @@ export default function useCarousel(
 ): void {
   const tweenRef = useRef<GSAPTween | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     const track = trackRef.current;
     if (!container || !track) return;

@@ -1,7 +1,7 @@
 'use client'
 
 import * as THREE from 'three'
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function NetworkSphere3D() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -13,7 +13,7 @@ export default function NetworkSphere3D() {
   const isDraggingRef = useRef(false)
   const lastPosRef = useRef({ x: 0, y: 0 })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!containerRef.current) return
     const container = containerRef.current
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import AboutCarousel from './AboutCarousel'
 import AboutHeader from './AboutHeader'
 import AboutParagraphs from './AboutParagraphs'
@@ -16,7 +16,7 @@ export default function AboutSection() {
   const appeared = useIntersectionObserver(root, { threshold: 0.3, rootMargin: '0px 0px -10% 0px' })
   const reduced = usePrefersReducedMotion()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!appeared || reduced) return
     let ctx: gsap.Context | undefined
 
@@ -108,21 +108,6 @@ export default function AboutSection() {
 
             <SkillList items={skills} />
 
-            {/* CTA */}
-            <div data-about-cta className="mt-6 sm:mt-8 md:mt-10 flex gap-3">
-              <a
-                href="#projects"
-                className="relative inline-flex items-center gap-2 rounded-full border border-cyan-500/40 px-4 sm:px-5 py-2 text-sm sm:text-base md:text-lg font-medium text-white hover:bg-white/5 transition-colors"
-              >
-                Смотреть проекты →
-              </a>
-              <a
-                href="#contact"
-                className="relative inline-flex items-center gap-2 rounded-full border border-white/15 px-4 sm:px-5 py-2 text-sm sm:text-base md:text-lg font-medium text-white/90 hover:bg-white/5 transition-colors"
-              >
-                Связаться
-              </a>
-            </div>
           </div>
 
           {/* правая колонка — карточки */}
