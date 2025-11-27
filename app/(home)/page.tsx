@@ -17,7 +17,7 @@ export default function HeroPage() {
         <CinematicIntro />
         <AboutSection />
         <ProjectsBlock />
-        {/* <ContactBlock email='danii.zvorugin@gmail.com' /> */}
+        <ContactBlock email='danii.zvorugin@gmail.com' />
       </div>
     </div>
   )
