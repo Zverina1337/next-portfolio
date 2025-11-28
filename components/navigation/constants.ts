@@ -1,12 +1,12 @@
 export type NavItem = Readonly<{
-  href: `#${string}`;
+  href: string;
   label: string;
   idx: `${number}${number}`; // "01" | "02" ...
 }>;
 
 export const NAVIGATION_LINKS: readonly NavItem[] = [
-  { href: '#home',     label: 'Домой',      idx: '01' },
-  { href: '#about',    label: 'Обо мне',    idx: '02' },
+  { href: '/',     label: 'Домой',      idx: '01' },
+  { href: '/about',    label: 'Обо мне',    idx: '02' },
   { href: '#projects', label: 'Проекты',    idx: '03' },
   { href: '#contact',  label: 'Контакты',   idx: '04' },
 ] as const;

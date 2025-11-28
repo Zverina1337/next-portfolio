@@ -127,3 +127,8 @@ experimental.typedRoutes: true  // Типизированные роуты
 - **Функциональные компоненты**: `export default function ComponentName()`
 - **Хуки**: Префикс `use`, вынесены в отдельные файлы
 - **Типизация**: TypeScript strict mode, избегать `any`
+
+### Референсы
+
+1. **Основной**: https://dumemearts.com/about 
+2. **Побочный**: https://billodesign.webflow.io/#about-me
