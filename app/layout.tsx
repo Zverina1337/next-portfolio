@@ -4,8 +4,8 @@ import Preloader from '@/components/ui/custom/preloader/Preloader'
 import Navigation from '@/components/navigation/Navigation.client'
 
 export const metadata: Metadata = {
-  title: 'Portfolio — Anim Starter',
-  description: 'Next.js 14 + GSAP + r3f + shadcn/ui + Tailwind starter',
+  title: 'Zverinacode',
+  description: 'Next.js 14 + GSAP + shadcn/ui + Tailwind starter',
 }
 
 
