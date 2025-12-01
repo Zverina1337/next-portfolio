@@ -124,6 +124,11 @@
 
 @tailwind utilities;
 
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}
 
 :root { color-scheme: light dark; }
 

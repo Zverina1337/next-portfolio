@@ -12,6 +12,9 @@ export default function NetworkSphere3D() {
   const rotationRef = useRef({ x: 0, y: 0 })
   const isDraggingRef = useRef(false)
   const lastPosRef = useRef({ x: 0, y: 0 })
+  // для инерции вращения
+  const velocityRef = useRef({ x: 0, y: 0 })
+  const lastMoveTimeRef = useRef(0)
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -116,15 +119,30 @@ export default function NetworkSphere3D() {
         x: 'touches' in e ? e.touches[0].clientX : e.clientX,
         y: 'touches' in e ? e.touches[0].clientY : e.clientY,
       }
+      lastMoveTimeRef.current = performance.now()
+      // Обнуляем скорость при начале нового перетаскивания
+      velocityRef.current = { x: 0, y: 0 }
     }
 
     const onMove = (e: MouseEvent | TouchEvent) => {
       if (!isDraggingRef.current) return
       const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
       const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+
+      const now = performance.now()
+      const dt = now - lastMoveTimeRef.current
+
       const dx = clientX - lastPosRef.current.x
       const dy = clientY - lastPosRef.current.y
+
+      // Рассчитываем скорость для инерции (только если прошло достаточно времени)
+      if (dt > 0 && dt < 100) {
+        velocityRef.current.x = dy * 0.003 / dt * 16
+        velocityRef.current.y = dx * 0.003 / dt * 16
+      }
+
       lastPosRef.current = { x: clientX, y: clientY }
+      lastMoveTimeRef.current = now
       rotationRef.current.y += dx * 0.003
       rotationRef.current.x += dy * 0.003
     }
@@ -133,19 +151,34 @@ export default function NetworkSphere3D() {
       isDraggingRef.current = false
     }
 
-    container.addEventListener('mousedown', onDown)
-    container.addEventListener('mousemove', onMove)
-    container.addEventListener('mouseup', onUp)
-    container.addEventListener('mouseleave', onUp)
-    container.addEventListener('touchstart', onDown)
-    container.addEventListener('touchmove', onMove)
-    container.addEventListener('touchend', onUp)
+    // Отключаем интерактивность на мобильных устройствах (< 768px)
+    const isMobile = window.innerWidth < 768
+    if (!isMobile) {
+      container.addEventListener('mousedown', onDown)
+      container.addEventListener('mousemove', onMove)
+      container.addEventListener('mouseup', onUp)
+      container.addEventListener('mouseleave', onUp)
+    }
 
     // Render loop
     let raf = 0
     const clock = new THREE.Clock()
     const render = () => {
       const t = clock.getElapsedTime()
+
+      // Применяем инерцию если не перетаскиваем
+      if (!isDraggingRef.current) {
+        rotationRef.current.x += velocityRef.current.x
+        rotationRef.current.y += velocityRef.current.y
+
+        // Плавное затухание скорости (damping factor 0.95)
+        velocityRef.current.x *= 0.95
+        velocityRef.current.y *= 0.95
+
+        // Останавливаем если скорость очень маленькая
+        if (Math.abs(velocityRef.current.x) < 0.0001) velocityRef.current.x = 0
+        if (Math.abs(velocityRef.current.y) < 0.0001) velocityRef.current.y = 0
+      }
 
       // автоворот + интерактивное вращение
       g.rotation.y = t * 0.18 + rotationRef.current.y
@@ -171,13 +204,12 @@ export default function NetworkSphere3D() {
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
-      container.removeEventListener('mousedown', onDown)
-      container.removeEventListener('mousemove', onMove)
-      container.removeEventListener('mouseup', onUp)
-      container.removeEventListener('mouseleave', onUp)
-      container.removeEventListener('touchstart', onDown)
-      container.removeEventListener('touchmove', onMove)
-      container.removeEventListener('touchend', onUp)
+      if (!isMobile) {
+        container.removeEventListener('mousedown', onDown)
+        container.removeEventListener('mousemove', onMove)
+        container.removeEventListener('mouseup', onUp)
+        container.removeEventListener('mouseleave', onUp)
+      }
 
       lineGeo.dispose()
       nodeGeo.dispose()
@@ -190,5 +222,5 @@ export default function NetworkSphere3D() {
     }
   }, [])
 
-  return <div ref={containerRef} className="w-[72vw] max-w-[720px] aspect-square cursor-grab" />
+  return <div ref={containerRef} className="w-full max-w-[720px] aspect-square cursor-grab mx-auto" />
 }

@@ -86,7 +86,7 @@ const CanvasBackground = ({ containerRef, canvasRef }: CanvasBackgroundProps) =>
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [canvasRef, containerRef]);
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />;
 };

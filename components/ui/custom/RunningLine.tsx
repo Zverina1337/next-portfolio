@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import clsx from 'clsx'
 import useCarousel from '@/components/hooks/useCarousel'
 

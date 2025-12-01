@@ -83,8 +83,7 @@ export default function AnimatedSlogan({
       tlRef.current?.kill()
       tlRef.current = null
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idx, variant, inStagger, holdMs, loop, prefersReduced, phrases.length])
+  }, [idx, variant, inStagger, holdMs, loop, prefersReduced, phrases.length, chars])
 
   return (
     <div

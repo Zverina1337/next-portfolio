@@ -13,23 +13,22 @@ export default function Navigation() {
   const headerRef = useRef<HTMLElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
-  const overlayTl = useOverlayMenu(overlayRef);
+  const overlayTl = useOverlayMenu(overlayRef)
 
-  useAutoHideHeader(headerRef, open);
-  useNavIntro(root, headerRef);
+  useAutoHideHeader(headerRef, open)
+  useNavIntro(root, headerRef)
 
- // синхронизация TL с состоянием меню (эффектом, а не «в рендере»)
+  // синхронизация TL с состоянием меню
   useEffect(() => {
-    const node = overlayRef.current;
-    if (!overlayTl || !node) return;
+    const node = overlayRef.current
+    if (!overlayTl || !node) return
     if (open) {
-      node.classList.remove('pointer-events-none');
-      overlayTl.play(0);
+      node.classList.remove('pointer-events-none')
+      overlayTl.play(0)
     } else {
-      overlayTl.reverse().then(() => node.classList.add('pointer-events-none'));
+      overlayTl.reverse().then(() => node.classList.add('pointer-events-none'))
     }
-  }, [open, overlayTl]);
-
+  }, [open, overlayTl])
 
   return (
     <div ref={root} className="relative">

@@ -1,8 +1,6 @@
 export const skills = [
   { label: 'Next.js / React', val: 70 },
-  { label: 'TypeScript', val: 80 },
   { label: 'Nuxt.js / Vue 3', val: 90 },
-  { label: 'Perf / A11y', val: 88 },
   { label: 'Nest.js / Laravel', val: 40 },
 ] as const
 
@@ -14,22 +12,10 @@ export const stats = [
     text: 'Оптимизация процессов разработки через ChatGPT, DeepSeek, Ollama. В среднем скорость выше в 2–3 раза.',
   },
   {
-    n: '5',
-    s: '+',
-    title: 'AI-интеграции',
-    text: 'Реализовал модули и ассистентов на базе локальных моделей (Ollama). Улучшил DX и точность решений.',
-  },
-  {
     n: '95',
     s: '+',
     title: 'Lighthouse Perf',
     text: 'Оптимизация рендеринга, ассетов и адаптивной вёрстки. Core Web Vitals 90–95+.',
-  },
-  {
-    n: '25',
-    s: '%',
-    title: 'Component Reuse',
-    text: 'Создана библиотека переиспользуемых компонентов — время вывода новых интерфейсов сократилось на 25%.',
   },
   {
     n: '1.5',
@@ -50,7 +36,7 @@ export const stats = [
     text: 'Node.js, Express, Docker, Mongo/PostgreSQL. Разработка и деплой full-stack окружений.',
   },
   {
-    n: '4',
+    n: '3',
     s: 'D',
     title: 'Визуал',
     text: 'UX-акценты, анимации GSAP/Three.js, чистый UI без перегруза.',

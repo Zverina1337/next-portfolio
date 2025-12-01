@@ -84,7 +84,8 @@ export default function ContactBlock({
       style={style}
       className={clsx(
         'relative isolate overflow-hidden',
-        'mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8',
+        'mx-auto w-full max-w-[1920px]',
+        'px-6 sm:px-8 md:px-12 lg:px-20',
         'py-24 sm:py-28 lg:py-32',
         'bg-black rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/30',
         className

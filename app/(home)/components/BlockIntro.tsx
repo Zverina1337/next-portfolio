@@ -1,10 +1,20 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { gsap } from 'gsap'
 import RulerTop from '@/components/ui/custom/RulerTop'
-import Sphere from '@/components/ui/custom/3D/Sphere'
 import getMasterTl from '@/components/hooks/useMasterTl'
+
+// Dynamic import для Sphere - оптимизация bundle size главной страницы
+const Sphere = dynamic(() => import('@/components/ui/custom/3D/Sphere'), {
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-24 h-24 rounded-full bg-cyan-500/10 animate-pulse" />
+    </div>
+  ),
+  ssr: false,
+})
 import AnimatedRadialAccent from '@/components/ui/custom/animated/AnimatedRadialAccent'
 import AnimatedBG from '@/components/ui/custom/animated/AnimatedBg'
 import { useIntersectionObserver } from '@/components/hooks/useIntersectionObserver' 
@@ -86,10 +96,8 @@ export default function CinematicIntroOptimized() {
               <span className="absolute right-0 bottom-0 translate-x-3 translate-y-2 h-5 w-5 border-r-2 border-b-2 border-cyan-500 opacity-80" />
             </div>
 
-            <div ref={sphereWrapRef} className="relative mt-8 grid place-items-center cursor-grab" data-testid="sphere-wrap">
-              <div className="w-full max-w-full sm:max-w-[720px]">
-                <Sphere />
-              </div>
+            <div ref={sphereWrapRef} className="relative mt-8 flex items-center justify-center" data-testid="sphere-wrap">
+              <Sphere />
             </div>
           </div>
         </div>

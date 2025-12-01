@@ -30,15 +30,18 @@ const AnimatedBG = memo(function AnimatedBG({
     const svg = rootRef.current;
     if (!svg || reduce) return;
 
+    const animations: gsap.core.Animation[] = []
+
     const ctx = gsap.context(() => {
       // Общие лёгкие движения
       gsap.set(svg, { transformOrigin: '50% 50%' });
-      gsap.to(svg, { x: 10, y: -20, scale: 1.03, duration: 12, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      animations.push(
+        gsap.to(svg, { x: 10, y: -20, scale: 1.03, duration: 12, repeat: -1, yoyo: true, ease: 'sine.inOut' })
+      )
 
       const rings = svg.querySelectorAll<SVGPathElement>('[data-ring]');
       if (rings.length) {
         rings.forEach((el, i) => {
-          const r = 30 + i * 110;
           gsap.set(el, { rotation: i % 2 ? 0.3 : -0.2, transformOrigin: '50% 50%' });
           // мягкое вращение
           gsap.to(el, { rotation: `+=${i % 2 ? 8 : -6}`, duration: 40 + i * 8, repeat: -1, ease: 'none' });
@@ -82,7 +85,18 @@ const AnimatedBG = memo(function AnimatedBG({
 
     }, rootRef);
 
-    return () => ctx.revert();
+    // Pause анимаций при скрытии вкладки (экономия батареи)
+    const handleVisibilityChange = () => {
+      animations.forEach((anim) => {
+        document.hidden ? anim.pause() : anim.resume()
+      })
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      ctx.revert()
+    }
   }, [variant]);
 
   // SVG разметка под разные варианты

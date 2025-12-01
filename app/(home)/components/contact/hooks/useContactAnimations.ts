@@ -2,7 +2,6 @@
 
 import { type RefObject, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /**
  * Хук для GSAP анимаций появления элементов ContactBlock

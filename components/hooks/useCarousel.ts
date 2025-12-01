@@ -34,7 +34,19 @@ export default function useCarousel(
       window.addEventListener('resize', setup);
       setup();
 
-      return () => { tweenRef.current?.kill(); ro.disconnect(); window.removeEventListener('resize', setup); };
+      // Обработчик паузы анимации при скрытии вкладки (экономия батареи)
+      const handleVisibilityChange = () => {
+        if (!tweenRef.current) return
+        document.hidden ? tweenRef.current.pause() : tweenRef.current.resume()
+      }
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+
+      return () => {
+        tweenRef.current?.kill()
+        ro.disconnect()
+        window.removeEventListener('resize', setup)
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
+      }
     }, container);
 
     return () => ctx.revert();

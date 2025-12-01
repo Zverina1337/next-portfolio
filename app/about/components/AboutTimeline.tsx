@@ -141,7 +141,7 @@ export default function AboutTimeline() {
     <section
       ref={root}
       id="about-timeline"
-      className="relative w-full bg-black text-white py-20 overflow-hidden"
+      className="relative w-full bg-black text-white pb-0 pt-20 overflow-hidden"
       aria-label="Career Timeline"
     >
       <div className="relative mx-auto max-w-[1200px] px-4 sm:px-6 md:px-12">
@@ -152,9 +152,6 @@ export default function AboutTimeline() {
           </h2>
           <p className="text-base sm:text-lg opacity-70">
             Roadmap моего профессионального развития
-          </p>
-          <p className="text-sm opacity-50 mt-2">
-            💡 Наведи на карточки, чтобы узнать подробности
           </p>
         </div>
 
@@ -183,7 +180,7 @@ export default function AboutTimeline() {
                   {/* Карточка слева (на мобилке всегда по центру) */}
                   {isLeft ? (
                     <>
-                      <div className="md:text-right md:flex md:justify-end">
+                      <div>
                         <TimelineCard {...event} />
                       </div>
                       <div className="hidden md:block" />
@@ -232,6 +229,9 @@ export default function AboutTimeline() {
                    bg-[radial-gradient(rgba(34,211,238,0.1)_1px,transparent_1px)]
                    [background-size:24px_24px]"
       />
+
+      {/* Градиент снизу для плавного перехода к следующей секции */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-transparent via-black/40 to-transparent" />
     </section>
   )
 }

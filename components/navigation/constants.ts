@@ -7,8 +7,7 @@ export type NavItem = Readonly<{
 export const NAVIGATION_LINKS: readonly NavItem[] = [
   { href: '/',     label: 'Домой',      idx: '01' },
   { href: '/about',    label: 'Обо мне',    idx: '02' },
-  { href: '#projects', label: 'Проекты',    idx: '03' },
-  { href: '#contact',  label: 'Контакты',   idx: '04' },
+  { href: '/projects', label: 'Проекты',    idx: '03' },
 ] as const;
 
 

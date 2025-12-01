@@ -1,0 +1,184 @@
+{
+  "projects": [
+    {
+      "id": "mpb-top",
+      "title": "Mpb.TOP",
+      "shortDescription": "Сервис для продавцов маркетплейсов с модулем техподдержки",
+      "fullDescription": "Разработал модуль техподдержки с мессенджером для Mpb.TOP. Реализовал real-time чат, систему тикетов и админ-панель для управления обращениями.",
+      "technologies": ["React", "TypeScript", "Socket.io", "REST API"],
+      "type": "commercial",
+      "year": 2024,
+      "status": "completed",
+      "image": "/projects/mpb-top.jpg",
+      "link": "https://mpb.top",
+      "features": [
+        "Real-time мессенджер",
+        "Система тикетов",
+        "Админ-панель",
+        "Интеграция с маркетплейсами"
+      ]
+    },
+    {
+      "id": "v1t-platform",
+      "title": "V1T Monitoring Platform",
+      "shortDescription": "Платформа мониторинга поставок с адаптивным дашбордом",
+      "fullDescription": "Создал полностью адаптивную верстку дашборда и отчетов. Реализовал систему визуализации данных с графиками и таблицами.",
+      "technologies": ["Next.js", "TypeScript", "Chart.js", "Tailwind CSS"],
+      "type": "commercial",
+      "year": 2024,
+      "status": "completed",
+      "image": "/projects/v1t.jpg",
+      "link": null,
+      "features": [
+        "Адаптивный дашборд",
+        "Визуализация данных",
+        "Система отчетов",
+        "Экспорт в PDF/Excel"
+      ]
+    },
+    {
+      "id": "contractis",
+      "title": "Contractis",
+      "shortDescription": "Система поиска IT-специалистов на Nuxt.js",
+      "fullDescription": "Платформа для поиска IT-специалистов. Разработал фронтенд на Nuxt.js с системой фильтрации, профилями специалистов и системой откликов.",
+      "technologies": ["Nuxt.js", "Vue 3", "TypeScript", "Pinia"],
+      "type": "commercial",
+      "year": 2024,
+      "status": "completed",
+      "image": "/projects/contractis.jpg",
+      "link": "https://contractis.ru",
+      "features": [
+        "Система фильтрации",
+        "Профили специалистов",
+        "Система откликов",
+        "Поиск по навыкам"
+      ]
+    },
+    {
+      "id": "medical-crm",
+      "title": "Medical CRM",
+      "shortDescription": "CRM система для медиков на Vue 3",
+      "fullDescription": "Участвовал в создании backend на Express.js для CRM с БД на 1200+ таблиц. Разработал фронтенд интерфейсы для управления пациентами и записями.",
+      "technologies": ["Vue 3", "Express.js", "PostgreSQL", "TypeScript"],
+      "type": "commercial",
+      "year": 2024,
+      "status": "completed",
+      "image": "/projects/medical-crm.jpg",
+      "link": null,
+      "features": [
+        "Управление пациентами",
+        "Система записей",
+        "Интеграция с БД 1200+ таблиц",
+        "Backend на Express.js"
+      ]
+    },
+    {
+      "id": "profteam-platform",
+      "title": "ProfTeam Platform",
+      "shortDescription": "Образовательная IT-платформа для студентов и компаний",
+      "fullDescription": "Образовательная платформа для объединения компаний и студентов. Разработал пользовательские интерфейсы и систему взаимодействия.",
+      "technologies": ["Vue.js", "JavaScript", "REST API", "SCSS"],
+      "type": "education",
+      "year": 2023,
+      "status": "completed",
+      "image": "/projects/profteam.jpg",
+      "link": null,
+      "features": [
+        "Система профилей",
+        "Взаимодействие студент-компания",
+        "Образовательные материалы",
+        "REST API интеграция"
+      ]
+    },
+    {
+      "id": "genius-ai",
+      "title": "Genius AI",
+      "shortDescription": "AI-платформа для генерации контента (OpenAI API)",
+      "fullDescription": "Платформа для генерации различных типов контента с использованием OpenAI API. Реализовал интеграцию с GPT-4, систему токенов и тарифов.",
+      "technologies": ["Vue 3", "Node.js", "OpenAI API", "MongoDB"],
+      "type": "pet",
+      "year": 2023,
+      "status": "completed",
+      "image": "/projects/genius-ai.jpg",
+      "link": null,
+      "features": [
+        "Интеграция с OpenAI GPT-4",
+        "Система токенов",
+        "Множество типов контента",
+        "Управление тарифами"
+      ]
+    },
+    {
+      "id": "ecommerce-platform",
+      "title": "Ecommerce Platform",
+      "shortDescription": "Интернет-магазин с админ-панелью",
+      "fullDescription": "Полноценный интернет-магазин с каталогом товаров, корзиной, системой заказов и админ-панелью для управления.",
+      "technologies": ["React", "Node.js", "Express", "MongoDB"],
+      "type": "pet",
+      "year": 2023,
+      "status": "completed",
+      "image": "/projects/ecommerce.jpg",
+      "link": null,
+      "features": [
+        "Каталог товаров",
+        "Корзина и оформление заказа",
+        "Админ-панель",
+        "Управление товарами"
+      ]
+    },
+    {
+      "id": "messenger-clone",
+      "title": "Messenger Clone",
+      "shortDescription": "Клон Telegram с Socket.io",
+      "fullDescription": "Real-time мессенджер с чатами, группами, обменом файлами. Использовал Socket.io для мгновенной передачи сообщений.",
+      "technologies": ["Vue 3", "Node.js", "Socket.io", "PostgreSQL"],
+      "type": "pet",
+      "year": 2022,
+      "status": "completed",
+      "image": "/projects/messenger.jpg",
+      "link": null,
+      "features": [
+        "Real-time чаты",
+        "Групповые чаты",
+        "Обмен файлами",
+        "Socket.io интеграция"
+      ]
+    },
+    {
+      "id": "portfolio-v1",
+      "title": "Portfolio v1",
+      "shortDescription": "Первая версия портфолио с анимациями",
+      "fullDescription": "Первая версия личного портфолио с GSAP анимациями и адаптивным дизайном.",
+      "technologies": ["Next.js", "GSAP", "Tailwind CSS", "TypeScript"],
+      "type": "pet",
+      "year": 2023,
+      "status": "completed",
+      "image": "/projects/portfolio-v1.jpg",
+      "link": null,
+      "features": [
+        "GSAP анимации",
+        "Адаптивный дизайн",
+        "Dark mode",
+        "Секции с проектами"
+      ]
+    },
+    {
+      "id": "task-manager",
+      "title": "Task Manager Pro",
+      "shortDescription": "Менеджер задач с Kanban доской",
+      "fullDescription": "Приложение для управления задачами с Kanban доской, дедлайнами, приоритетами и командной работой.",
+      "technologies": ["React", "TypeScript", "Zustand", "Tailwind CSS"],
+      "type": "pet",
+      "year": 2023,
+      "status": "in-progress",
+      "image": "/projects/task-manager.jpg",
+      "link": null,
+      "features": [
+        "Kanban доска",
+        "Система приоритетов",
+        "Дедлайны",
+        "Командная работа"
+      ]
+    }
+  ]
+}

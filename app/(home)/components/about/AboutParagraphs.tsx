@@ -1,23 +1,15 @@
 export default function AboutParagraphs() {
   return (
     <>
-      <p className="mt-4 text-base sm:text-lg md:text-xl text-white/90">
-        Создаю быстрые и выразительные интерфейсы на <b>Vue</b> и <b>React</b>, 
-        сочетая эстетику и функциональность. Для меня важны плавные сценарии, 
-        логика взаимодействий и ощущение цельного продукта.
+      <p className="text-base sm:text-lg text-gray-300/90 leading-relaxed">
+        Frontend-разработчик с <span className="text-cyan-400 font-semibold">1.5 годами опыта</span>,
+        специализирующийся на Vue.js и React. Глубоко интегрирую AI-инструменты в процесс разработки,
+        что позволяет увеличивать скорость работы в <span className="text-cyan-400 font-semibold">2-3 раза</span>.
       </p>
 
-      <p className="text-sm sm:text-base md:text-lg text-white/85">
-        Разрабатываю приложения на <b>Next.js</b>, <b>Nuxt.js</b> и <b>TypeScript</b> — 
-        от CRM-систем и дашбордов до интерактивных платформ. 
-        Внедряю <b>AI-инструменты</b> (<b>ChatGPT</b>, <b>DeepSeek</b>, <b>Ollama</b>), 
-        которые ускоряют процесс в 2-3 раза и помогают поддерживать высокий уровень кода.
-      </p>
-
-      <p className="text-sm sm:text-base md:text-lg text-white/85">
-        Работаю с <b>Docker</b>, <b>Node.js</b> и <b>Express</b> — выстраиваю инфраструктуру и CI-процессы. 
-        Особое внимание уделяю <b>производительности</b>, <b>доступности</b> (WCAG) и архитектуре компонентов. 
-        Код — чистый, типобезопасный и легко масштабируемый.
+      <p className="text-base sm:text-lg text-gray-300/90 leading-relaxed">
+        Имею полное понимание полного цикла разработки — от интеграции API
+        до проектирования масштабируемой архитектуры.
       </p>
     </>
   )
