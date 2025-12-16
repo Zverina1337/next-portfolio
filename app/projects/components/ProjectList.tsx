@@ -10,10 +10,21 @@ interface ProjectListProps {
   projects: Project[] | null
   isLoading: boolean
   error: Error | null
+  filterKey?: string // Ключ для сброса анимации при изменении фильтров
 }
 
-export default function ProjectList({ projects, isLoading, error }: ProjectListProps) {
+export default function ProjectList({ projects, isLoading, error, filterKey }: ProjectListProps) {
   const listRef = useRef<HTMLDivElement>(null)
+  const prevLengthRef = useRef(0)
+  const prevFilterKeyRef = useRef(filterKey)
+
+  // Сбрасываем счетчик при изменении фильтров
+  useEffect(() => {
+    if (filterKey !== prevFilterKeyRef.current) {
+      prevLengthRef.current = 0
+      prevFilterKeyRef.current = filterKey
+    }
+  }, [filterKey])
 
   useEffect(() => {
     const prefersReduced =
@@ -24,9 +35,17 @@ export default function ProjectList({ projects, isLoading, error }: ProjectListP
 
     const ctx = gsap.context(() => {
       const items = listRef.current?.querySelectorAll('[data-project-item]')
-      if (items) {
+      if (!items) return
+
+      const itemsArray = Array.from(items)
+      const prevLength = prevLengthRef.current
+
+      // Анимируем только новые элементы (с индексом >= prevLength)
+      const newItems = itemsArray.slice(prevLength)
+
+      if (newItems.length > 0) {
         gsap.fromTo(
-          items,
+          newItems,
           { y: 30, opacity: 0 },
           {
             y: 0,
@@ -38,6 +57,9 @@ export default function ProjectList({ projects, isLoading, error }: ProjectListP
         )
       }
     }, listRef)
+
+    // Обновляем предыдущую длину после анимации
+    prevLengthRef.current = projects.length
 
     return () => ctx.revert()
   }, [projects])

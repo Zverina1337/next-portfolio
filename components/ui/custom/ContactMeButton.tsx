@@ -1,8 +1,11 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import clsx from 'clsx'
 import gsap from 'gsap'
+
+// Безопасный useLayoutEffect для SSR (предотвращает warning в Next.js)
+const useIsoLayout = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export type ContactMeButtonProps = {
   className?: string
@@ -15,12 +18,12 @@ export type ContactMeButtonProps = {
  */
 export default function ContactMeButton({
   className,
-  href = '#contact'
+  href = '/#contact'
 }: ContactMeButtonProps) {
   const textTopRef = useRef<HTMLSpanElement | null>(null)
   const textBottomRef = useRef<HTMLSpanElement | null>(null)
 
-  useLayoutEffect(() => {
+  useIsoLayout(() => {
     const textTop = textTopRef.current
     const textBottom = textBottomRef.current
     if (!textTop || !textBottom) return

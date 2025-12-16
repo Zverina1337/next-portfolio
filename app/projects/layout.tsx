@@ -20,7 +20,7 @@ export default async function ProjectsLayout({
   children: React.ReactNode
 }) {
   const projectsData = await getProjects()
-
+  
   return (
     <div className="min-h-screen bg-black">
       {/* Передаем данные через data-attribute для клиентских компонентов */}

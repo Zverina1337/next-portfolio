@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -16,7 +16,7 @@ export type TimelineCardProps = {
   position?: 'left' | 'right'
 }
 
-export default function TimelineCard({
+const TimelineCard = memo(function TimelineCard({
   year,
   title,
   shortDescription,
@@ -58,7 +58,7 @@ export default function TimelineCard({
     }
   }, [])
 
-  const expandCard = () => {
+  const expandCard = useCallback(() => {
     if (!cardRef.current || !expandedRef.current) return
     if (isExpanded) return
 
@@ -97,9 +97,9 @@ export default function TimelineCard({
         ease: 'back.out(1.3)',
       }, 0)
     }
-  }
+  }, [isExpanded])
 
-  const toggleExpand = () => {
+  const toggleExpand = useCallback(() => {
     if (!cardRef.current || !expandedRef.current) return
 
     const card = cardRef.current
@@ -140,7 +140,7 @@ export default function TimelineCard({
         }, 0)
       }
     }
-  }
+  }, [isExpanded, expandCard])
 
   return (
     <div className={`relative ${position === 'left' ? 'md:mr-8' : 'md:ml-8'}`}>
@@ -209,7 +209,7 @@ export default function TimelineCard({
           {/* Кнопка "Подробнее" */}
           <button
             onClick={toggleExpand}
-            className="group relative inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-xs font-medium text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300"
+            className="group relative inline-flex items-center justify-center gap-2 px-4 py-2 min-h-[48px] min-w-[120px] bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-xs font-medium text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 touch-manipulation"
           >
             <span>{isExpanded ? 'Свернуть' : 'Подробнее'}</span>
             <svg
@@ -287,4 +287,6 @@ export default function TimelineCard({
       </div>
     </div>
   )
-}
+})
+
+export default TimelineCard

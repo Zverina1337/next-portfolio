@@ -4,8 +4,8 @@ import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntersectionObserver } from '@/components/hooks/useIntersectionObserver'
 
-// Dynamic import для SkillsPyramid - уменьшает bundle размер на ~214KB
-const SkillsPyramid = dynamic(() => import('@/components/ui/custom/3D/SkillsPyramid'), {
+// Dynamic import для SkillsPyramidWrapper - умный выбор 3D/2D версии
+const SkillsPyramidWrapper = dynamic(() => import('@/components/ui/custom/3D/SkillsPyramidWrapper'), {
   loading: () => (
     <div className="w-full h-96 flex items-center justify-center">
       <div className="w-32 h-32 relative">
@@ -14,7 +14,7 @@ const SkillsPyramid = dynamic(() => import('@/components/ui/custom/3D/SkillsPyra
       </div>
     </div>
   ),
-  ssr: false, // Three.js не работает на сервере
+  ssr: false, // Canvas/WebGL работают только на клиенте
 })
 
 type Skill = {
@@ -77,7 +77,7 @@ export default function AboutSkills() {
         </div>
 
         {/* Пирамида навыков с физикой - на всю ширину */}
-        <SkillsPyramid skills={SKILLS} isVisible={isVisible} />
+        <SkillsPyramidWrapper skills={SKILLS} isVisible={isVisible} />
       </div>
 
       {/* Плавный переход к следующей секции */}

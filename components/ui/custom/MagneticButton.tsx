@@ -21,19 +21,21 @@ export default function MagneticContactButton({ email, className }: Props) {
 
     gsap.set(btn, { x: 0, y: 0, rotation: 0, scale: 1, force3D: true, transformOrigin: '50% 50%' })
 
-    const qx   = gsap.quickTo(btn, 'x',        { duration: 0.5, ease: 'expo.out', overwrite: true })
-    const qy   = gsap.quickTo(btn, 'y',        { duration: 0.5, ease: 'expo.out', overwrite: true })
-    const qrot = gsap.quickTo(btn, 'rotation', { duration: 0.5, ease: 'expo.out', overwrite: true })
-    const qsc  = gsap.quickTo(btn, 'scale',    { duration: 0.5, ease: 'expo.out', overwrite: true })
+    // Более плавные и медленные анимации для "магнитного" эффекта
+    const qx   = gsap.quickTo(btn, 'x',        { duration: 0.8, ease: 'power2.out', overwrite: true })
+    const qy   = gsap.quickTo(btn, 'y',        { duration: 0.8, ease: 'power2.out', overwrite: true })
+    const qrot = gsap.quickTo(btn, 'rotation', { duration: 0.9, ease: 'power1.out', overwrite: true })
+    const qsc  = gsap.quickTo(btn, 'scale',    { duration: 0.7, ease: 'power2.out', overwrite: true })
 
-    let cx = 0, cy = 0, R = 1, MAX_SHIFT = 180
+    let cx = 0, cy = 0, R = 1, MAX_SHIFT = 120
 
     const computeGeometry = () => {
       const r = zone.getBoundingClientRect()
       cx = r.left + r.width / 2
       cy = r.top + r.height / 2
       R = Math.max(1, Math.min(r.width, r.height) * 0.5)
-      MAX_SHIFT = Math.min(260, R * 1.1)
+      // Уменьшаем MAX_SHIFT для более сдержанного движения
+      MAX_SHIFT = Math.min(120, R * 0.8)
     }
 
     const onEnter = () => {
@@ -51,7 +53,8 @@ export default function MagneticContactButton({ email, className }: Props) {
       ny = clamp(ny)
 
       const mag = Math.hypot(nx, ny) // 0..~1
-      const eased = Math.pow(Math.min(1, mag), 0.75) // сила притяжения
+      // Более мягкая сила притяжения (степень 0.9 вместо 0.75)
+      const eased = Math.pow(Math.min(1, mag), 0.9)
       const dirx = mag ? nx / mag : 0
       const diry = mag ? ny / mag : 0
 
@@ -59,8 +62,10 @@ export default function MagneticContactButton({ email, className }: Props) {
       const dy = diry * MAX_SHIFT * eased
 
       qx(dx); qy(dy)
-      qrot((Math.atan2(dy, dx) * 180 / Math.PI) * 0.12)
-      qsc(1 + 0.06 * eased)
+      // Уменьшаем вращение для более сдержанного эффекта
+      qrot((Math.atan2(dy, dx) * 180 / Math.PI) * 0.06)
+      // Меньше масштабирования
+      qsc(1 + 0.03 * eased)
     }
 
     const onLeave = () => { qx(0); qy(0); qrot(0); qsc(1) }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import TabItem from './TabItem'
-import ProjectVideo from './ProjectVideo'
+import ProjectImages from './ProjectImages'
 import AnimatedStarsBg from '@/components/ui/custom/animated/AnimatedStarsBg'
 import useActiveIndex from './hooks/useActiveIndex'
 import useScrollTrigger from './hooks/useScrollTrigger'
@@ -88,20 +88,8 @@ export default function ProjectsShowcase() {
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between gap-8 w-full">
-          {/* ВИДЕО */}
-          <div
-            ref={videoContainerRef}
-            className={`transition-opacity duration-1000 w-full lg:w-[65%] ${
-              isVideoVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <div className="rounded-2xl overflow-hidden shadow-lg shadow-cyan-500/20">
-              <ProjectVideo
-                videoSrc={projects[activeIndex].video}
-                subtitle={projects[activeIndex].subtitle}
-              />
-            </div>
-          </div>
+          {/* КОЛЛАЖИ */}
+          <ProjectImages images={projects[activeIndex].images} />
 
           {/* СТАТИСТИКА */}
           <div

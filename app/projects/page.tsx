@@ -6,6 +6,7 @@ import type { ProjectFiltersState, ProjectsData } from '@/types/project'
 import ProjectSearch from './components/ProjectSearch'
 import ProjectFilters from './components/ProjectFilters'
 import ProjectList from './components/ProjectList'
+import AnimatedGrid from './components/AnimatedGrid'
 
 export default function ProjectsPage() {
   const [projectsData, setProjectsData] = useState<ProjectsData | null>(null)
@@ -120,6 +121,9 @@ export default function ProjectsPage() {
   // Проекты для отображения (с учетом infinite scroll)
   const displayedProjects = filteredProjects.slice(0, displayCount)
 
+  // Ключ для сброса анимации при изменении фильтров
+  const filterKey = useMemo(() => JSON.stringify(filters), [filters])
+
   // Мемоизированные callback для предотвращения re-renders
   const handleSearchChange = useCallback(
     (value: string) => setFilters({ ...filters, search: value }),
@@ -142,20 +146,19 @@ export default function ProjectsPage() {
   }, [projectsData])
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Киберпанк grid фон */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 opacity-20
-                   bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)]
-                   bg-[size:50px_50px]"
-      />
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      {/* Анимированная сетка с интерактивными точками */}
+      <AnimatedGrid />
 
-      {/* Radial glow accent */}
+      {/* Центральное свечение с анимацией дыхания */}
       <div
         aria-hidden
-        className="pointer-events-none fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]
-                   bg-gradient-radial from-cyan-500/10 via-purple-500/5 to-transparent blur-3xl"
+        className="pointer-events-none fixed inset-0"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, rgba(168, 85, 247, 0.08) 30%, transparent 60%)',
+          filter: 'blur(80px)',
+          animation: 'pulse 4s ease-in-out infinite',
+        }}
       />
 
       {/* Главный контейнер */}
@@ -198,7 +201,7 @@ export default function ProjectsPage() {
 
           {/* Правая колонка - Список проектов */}
           <main>
-            <ProjectList projects={displayedProjects} isLoading={isLoading} error={error} />
+            <ProjectList projects={displayedProjects} isLoading={isLoading} error={error} filterKey={filterKey} />
 
             {/* Sentinel для infinite scroll */}
             {displayCount < filteredProjects.length && (

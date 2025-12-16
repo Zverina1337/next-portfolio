@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import AboutHero from './components/AboutHero'
 import AboutTimeline from './components/AboutTimeline'
 import AboutSkills from './components/AboutSkills'
+import Footer from '@/components/ui/custom/Footer'
 
 export default function AboutPage() {
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -15,6 +16,7 @@ export default function AboutPage() {
         <AboutHero />
         <AboutTimeline />
         <AboutSkills />
+        <Footer />
       </div>
     </div>
   )

@@ -143,8 +143,17 @@
 }
 
 
-body { position: relative; z-index: 0; }
+body {
+  position: relative;
+  z-index: 0;
+}
 
+/* Компенсация для Lenis smooth scroll - добавляем пространство снизу для всех страниц */
+main,
+#smooth-wrapper,
+body > div:first-of-type {
+  padding-bottom: 10vh; /* 30% высоты экрана снизу для комфортного скролла */
+}
 
-/* Smooth scrolling */
-html { scroll-behavior: smooth; }
+/* Smooth scrolling - теперь используется Lenis вместо CSS */
+/* html { scroll-behavior: smooth; } */

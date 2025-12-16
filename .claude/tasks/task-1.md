@@ -1,54 +1,54 @@
-# Task 1 - работа над ошибками
+# Task 1 - error correction
 
-Твоя задача заключается в том, чтобы исправить список багов и доработок, важно чтобы все они были решены по Best Practices и с использованием документации из Context7. Выполняй задачи сверху вниз, по нумерации. В списке значися краткое описание задачи, ниже полное описание каждой задачи по пунктно.
+Your task is to fix the list of bugs and improvements, it is important that all of them are solved using Best Practices and using the documentation from Context7. Perform tasks from top to bottom, by numbering. The list contains a brief description of the task, below is a full description of each task by point.
 
-## Список задач:
-1. **Navigation**: Необходимо переделать UI для мобильной и десктопной навигации сайта.
-2. **3D Sphere**: Доработка сферы на главной странице ("/").
-3. **ContactBlock**: Необходимо переделать блок с точки зрения UI/UX, важно чтобы были соблюдены threejs-review навыки.
-4. **AboutMe page**: Переделать UI, статистики В блоке навыков нужно переверстать на ThreeJS блоки.
-5. **Optimization**: Проверить и максимизировать оптимизацию всего проекта.
+## Task list:
+1. **Navigation**: It is necessary to redesign the UI for mobile and desktop site navigation.
+2. **3D Sphere**: Refinement of the sphere on the main page ("/").
+3. **ContactBlock**: It is necessary to redo the block in terms of UI/UX, it is important that threejs-review skills are followed.
+4. **AboutMe page**: Redesign the UI, statistics In the skills block need to be flipped to ThreeJS blocks.
+5. **Optimization**: Check and maximize the optimization of the entire project.
 
 
 ## Navigation Task
 
-Твоя задача заключается в том, чтобы переделать текущую реализацию навигации таким образом, чтобы на компьютере отображался список навигации, а при уменьшении viewport страницы, начиная с планшетов, превращалсь в одну кнопку "Меню", с текущей визуальой реализацией. 
+Your task is to redesign the current navigation implementation so that the navigation list is displayed on the computer, and when the viewport is reduced, the pages, starting from tablets, turn into a single Menu button with the current visual implementation. 
 
-Навигация на компьютере должна выглядеть, как навигация в блоке ContactBlock основной страницы, важно чтобы визуальные анимации остались те же.
+Navigation on the computer should look like navigation in the ContactBlock block of the main page, it is important that the visual animations remain the same.
 
-### Шаги выполнения Navigation Task
-1. Найти компонент ContactNavigation.
-2. Переделать его на более переиспользуемую реализацию без обязательного разделителя.
-3. Перенести из локального компонента ContactBlock, в переиспользуемые компоненты проекта.
-4. Убери карусель из элемента RunningLine, переименуй его в "AvailableElement", теперь этот компонент будет показывать анимацию свечения голубого круга в нем. А также просто что я доступен для работы.
-5. Реализуй компонент кнопки contact me, важно чтобы она выглядела использовала визуальную анимацию при наведении и клику, без проблем с a11y.
-6. Замени кнопку "Меню" на кнопку Contact me.
-7. Добавь адаптивную навигацию.
-8. Предоставь мне варианты возможного увеличения UI/UX performance моей навигации (Минимум 3). Например, вот 3 элемента, которые можно было бы добавить не перегрузив визуал.
+### Steps for completing the Navigation Task
+1. Find the ContactNavigation component.
+2. Redo it to a more reusable implementation without the mandatory separator.
+3. Move from the local ContactBlock component to the reused components of the project.
+4. Remove the carousel from the RunningLine element, rename it to "AvailableElement", now this component will show an animation of the glow of a blue circle in it. And also just that I'm available for work.
+5. Implement the contact me button component, it is important that it looks like it uses visual animation when hovering and clicking, without problems with a11y.
+6. Replace the "Menu" button with the Contact me button.
+7. Add adaptive navigation.
+8. Provide me with options for possibly increasing the UI/UX performance of my navigation (At least 3). For example, here are 3 elements that could be added without overloading the visual.
 
 
-Предоставь возможность протестировать и проверить, как только закончишь с этой задачей, только после того, как прошел type-check, проверил оптимизацию и после моей визуальной проверки, приступай к следующей задаче.
+Provide an opportunity to test and verify as soon as you are done with this task, only after you have passed the type-check, checked the optimization, and after my visual check, proceed to the next task.
 
 ## 3D Sphere Task
 
-Твоя задача заключается в том, чтобы реализовать UX приятный эффект кручения сферы. То есть добавить плавность при отпускании сферы левой кнопкой мыши. 
+Your task is to realize the UX pleasant effect of twisting the sphere. That is, to add smoothness when releasing the sphere with the left mouse button. 
 
-### Шаги выполнения 3D Sphere Task
-1. Реализовать приятный эффект вращения сферы при отпускании левой кнопки мыши.
-2. Дать протестировать реализацию, после моего положительного ответа, перейти к следующему шагу.
-3. Убрать возможность вращать сферу на мобильном устройстве.
+### Steps for completing the 3D Sphere Task
+1. Realize the pleasant effect of rotating the sphere when releasing the left mouse button.
+2. Let me test the implementation, after my positive response, proceed to the next step.
+3. Remove the ability to rotate the sphere on a mobile device.
 
 ## ContactBlock Task
 
-Твоя задача заключается в том, чтобы переделать визуально ContactBlock, а именно переделать мобильную верстку под стандарт других блоков, чтобы не прикасались края блока к краям телефона, а также чтобы на компьютере он имел тот же размер блока, что и остальные блоки на основной странице.
+Your task is to redesign the ContactBlock visually, namely, to redesign the mobile layout to match the standard of other blocks so that the edges of the block do not touch the edges of the phone, and also so that it has the same block size on the computer as the rest of the blocks on the main page.
 
 ## AboutMe page Task
 
-Твоя задача заключается в том, чтобы изменить блок навыков на странице "Обо мне", превратив его в список 3D блоков с логотипами навыков, не нужно делать их визуально большими, самое важное чтобы при наведении была любая 3D анимация.
+Your task is to change the skill block on the "About Me" page, turning it into a list of 3D blocks with skill logos. You don't need to make them visually large, the most important thing is to have any 3D animation when you hover.
 
 ## Optimization Task
 
-Твоя задача заключается в том, чтобы проверить оптимизацию всего приложения и постараться решить основные проблемы. Используй /optimization-review.
+Your task is to check the optimization of the entire application and try to solve the main problems. Use /optimization-review.
 
 
-Если в ходе выполнения задач, появляются вопросы, задавай по мере выполнения.
+If you have any questions during the course of completing tasks, ask them as you complete them.
