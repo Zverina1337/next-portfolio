@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
+import { useDebounce } from '@/components/hooks/useDebounce'
 
 interface ProjectSearchProps {
   value: string
@@ -15,6 +16,24 @@ export default function ProjectSearch({
   placeholder = 'Поиск проектов...',
 }: ProjectSearchProps) {
   const searchRef = useRef<HTMLDivElement>(null)
+
+  // Локальный state для мгновенного отображения ввода
+  const [localValue, setLocalValue] = useState(value)
+
+  // Debounced значение (обновляется с задержкой 400ms)
+  const debouncedValue = useDebounce(localValue, 400)
+
+  // Синхронизация внешнего value с локальным (для кнопки очистки)
+  useEffect(() => {
+    setLocalValue(value)
+  }, [value])
+
+  // Вызов onChange только когда debounced значение изменилось
+  useEffect(() => {
+    if (debouncedValue !== value) {
+      onChange(debouncedValue)
+    }
+  }, [debouncedValue, onChange, value])
 
   useEffect(() => {
     const prefersReduced =
@@ -34,22 +53,27 @@ export default function ProjectSearch({
     return () => ctx.revert()
   }, [])
 
+  const handleClear = () => {
+    setLocalValue('')
+    onChange('')
+  }
+
   return (
     <div ref={searchRef} className="relative">
       <div className="relative">
         {/* Input - минималистичный */}
         <input
           type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          value={localValue}
+          onChange={(e) => setLocalValue(e.target.value)}
           placeholder={placeholder}
           className="w-full bg-transparent border-b border-cyan-500/30 px-0 py-2 text-white placeholder-white/40 outline-none text-sm focus:border-cyan-500/60 transition-colors"
         />
 
         {/* Кнопка очистки */}
-        {value && (
+        {localValue && (
           <button
-            onClick={() => onChange('')}
+            onClick={handleClear}
             className="absolute right-0 top-1/2 -translate-y-1/2 text-white/30 hover:text-cyan-400 transition-colors"
             aria-label="Очистить поиск"
           >

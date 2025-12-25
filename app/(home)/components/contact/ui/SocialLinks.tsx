@@ -34,7 +34,7 @@ const socialLinks: SocialLink[] = [
   },
   {
     name: 'hh.ru',
-    url: 'https://tomsk.hh.ru/resume/eed62117ff0ba6ae0e0039ed1f36704c687551',
+    url: 'https://tomsk.hh.ru/resume/486bd0a4ff0fcc77a50039ed1f4243667a5941',
     color: 'text-red-400',
     hoverColor: 'hover:text-red-300',
     icon: (

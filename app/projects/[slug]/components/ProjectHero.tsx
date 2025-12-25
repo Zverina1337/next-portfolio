@@ -27,6 +27,8 @@ const STATUS_LABELS = {
   completed: 'Завершен',
   'in-progress': 'В разработке',
   planned: 'Запланирован',
+  deprecated: 'Устарел',
+  incomplete: 'Не завершен',
 }
 
 export default function ProjectHero({ project }: ProjectHeroProps) {

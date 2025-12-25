@@ -124,10 +124,10 @@ export default function ProjectsPage() {
   // Ключ для сброса анимации при изменении фильтров
   const filterKey = useMemo(() => JSON.stringify(filters), [filters])
 
-  // Мемоизированные callback для предотвращения re-renders
+  // Обработчик изменения поиска (debounce реализован внутри ProjectSearch)
   const handleSearchChange = useCallback(
-    (value: string) => setFilters({ ...filters, search: value }),
-    [filters]
+    (value: string) => setFilters((prev) => ({ ...prev, search: value })),
+    []
   )
 
   // Извлечение уникальных технологий и годов для фильтров

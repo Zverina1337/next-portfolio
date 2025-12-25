@@ -8,7 +8,7 @@ export default function AboutParagraphs() {
       </p>
 
       <p className="text-base sm:text-lg text-gray-300/90 leading-relaxed">
-        Имею полное понимание полного цикла разработки — от интеграции API
+        Имею понимание полного цикла разработки — от интеграции API
         до проектирования масштабируемой архитектуры.
       </p>
     </>

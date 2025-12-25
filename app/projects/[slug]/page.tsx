@@ -10,9 +10,9 @@ import ProjectNavigation from './components/ProjectNavigation'
 import Footer from '@/components/ui/custom/Footer'
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Генерация статических параметров для всех проектов (SSG)
@@ -25,7 +25,8 @@ export function generateStaticParams() {
 
 // Генерация метаданных для SEO
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug)
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
 
   if (!project) {
     return {
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProjectBySlug(params.slug)
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
 
   // 404 если проект не найден
   if (!project) {
@@ -54,7 +56,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   }
 
   // Получаем соседние проекты для навигации (по умолчанию по дате)
-  const { prev, next } = getAdjacentProjects(params.slug, 'date')
+  const { prev, next } = getAdjacentProjects(slug, 'date')
 
   return (
     <main className='relative min-h-screen bg-gradient-to-b from-black via-gray-950 to-black'>

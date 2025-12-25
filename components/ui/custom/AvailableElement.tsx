@@ -17,7 +17,7 @@ export default function AvailableElement({
   return (
     <div
       className={clsx(
-        'inline-flex items-center gap-2 rounded-full border border-foreground/15 px-3 py-1.5',
+        'items-center gap-2 rounded-full border border-foreground/15 px-3 py-1.5',
         className
       )}
       id="availability"

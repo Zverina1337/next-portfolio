@@ -8,7 +8,9 @@ import useActiveIndex from './hooks/useActiveIndex'
 import useScrollTrigger from './hooks/useScrollTrigger'
 import { useIntersectionObserver } from '@/components/hooks/useIntersectionObserver'
 import gsap from 'gsap'
-import { projects } from './project.data'
+import portfolioData from '@/data/projects.json'
+
+const projects = portfolioData.showcaseProjects
 
 export default function ProjectsShowcase() {
   const containerRef = useRef<HTMLDivElement>(null)

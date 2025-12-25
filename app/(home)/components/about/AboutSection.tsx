@@ -80,7 +80,7 @@ export default function AboutSection() {
     <section
       ref={root}
       id="about"
-      className="relative h-[85vh] overflow-hidden bg-black text-white opacity-0 motion-safe:opacity-0"
+      className="relative min-h-[85vh] overflow-hidden bg-black text-white opacity-0 motion-safe:opacity-0"
       aria-label="About — phased reveal"
     >
       <div
@@ -96,9 +96,9 @@ export default function AboutSection() {
 
       <div
         data-about-body
-        className="relative z-[4] container mx-auto px-4 sm:px-6 md:px-12 lg:px-18 pt-12 sm:pt-16 md:pt-20 space-y-12 max-w-[1920px] h-full"
+        className="relative z-[4] container mx-auto px-4 sm:px-6 md:px-12 lg:px-18 pt-12 sm:pt-16 md:pt-20 pb-8 max-w-[1920px] min-h-[calc(85vh-3rem)] flex flex-col justify-between"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start mb-12">
           <div className="space-y-6 sm:space-y-8 md:space-y-10 max-w-[700px]">
             <AboutHeader />
             <AboutParagraphs />
@@ -109,8 +109,8 @@ export default function AboutSection() {
 
           <StatsGrid items={stats} />
         </div>
-        <div className='absolute bottom-16 left-0 w-full max-w-[1920px] px-4 sm:px-6 md:px-12 lg:px-18'>
-          <div data-about-divider className="h-px w-full bg-white/10" aria-hidden />
+        <div className='w-full mt-auto'>
+          <div data-about-divider className="h-px w-full bg-white/10 mb-8" aria-hidden />
           <AboutCarousel items={techs as unknown as string[]}/>
         </div>
 

@@ -17,7 +17,9 @@ export default function HeroPage() {
       <div ref={contentRef} id="smooth-content">
         <CinematicIntro />
         <AboutSection />
-        <ProjectsBlock />
+        <div className="hidden md:block">
+          <ProjectsBlock />
+        </div>
         <ContactBlock email='danii.zvorugin@gmail.com'/>
         <Footer />
       </div>

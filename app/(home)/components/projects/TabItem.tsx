@@ -1,7 +1,7 @@
-import type { Project } from "./project.data";
+import type { ShowcaseProject } from "@/types/portfolio";
 
 type TabItemProps = {
-  project: Project;
+  project: ShowcaseProject;
   index: number;
   activeIndex: number;
   onClick: (index: number) => void;
